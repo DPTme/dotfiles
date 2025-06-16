@@ -54,6 +54,31 @@ alias collapse_routes="sed -E 's/^[[:space:]]+([A-Z])/  _  \1/g' | sed -E 's/^(.
 # Helper to show license for all gems.
 alias gem_licenses='for i in `gem list | cut -d" " -f1`; do printf "%38s `gem spec $i license`\n" $i; done'
 
+# DPT specific aliases
+alias addalias='code /Users/dan/git/dotfiles/src/.zshrc'
+alias cdd='cd ~/documents'
+alias cddpt='cd ~/documents/dpt'
+alias cdg='cd ~/git'
+alias cdi='cd ~/git/rgnets/infrastructure && git status'
+alias cdic='cd ~/git/rgnets/infrastructure && git status && code .'
+alias cdp='cd ~/git/portals'
+alias cdr='cd ~/git/rgnets/rxg && git status'
+alias cdrc='cd ~/git/rgnets/rxg && git status && code .'
+alias icon='/Users/dan/Documents/misc/update_icon.sh'
+alias console='cddpt && rails c'
+alias flush='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+alias fs='foreman start'
+alias icx='weakssh super@192.168.6.50'
+alias llama='ollama run llama3.1:latest'
+alias llamahost='launchctl setenv OLLAMA_HOST "0.0.0.0"'
+alias llamaserve='OLLAMA_HOST=0.0.0.0 ollama serve'
+alias master='git checkout master && git branch'
+alias rxg='ssh dpt@rxg.dpt.me'
+#alias tplink='telnet 192.168.6.13'
+alias tplink='ssh admin@192.168.6.13'
+alias weakssh='ssh -o Ciphers=+aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc -o KexAlgorithms=+diffie-hellman-group1-sha1,diffie-hellman-group14-sha1 -o HostKeyAlgorithms=+ssh-rsa'
+alias whatismyip='wget http://ipinfo.io/ip -qO - && echo'
+
 #########
 # Tools #
 #########
@@ -91,6 +116,12 @@ activate() {
     fi
   done
 }
+
+# PIPX
+path_append "$HOME/.local/bin"
+
+# Flutter
+path_prepend "$HOME/git/flutter/bin"
 
 # Rust
 source_if_exists "$HOME/.cargo/env"
